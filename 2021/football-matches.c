@@ -43,9 +43,27 @@ int main()
 
     printf("\n ========FINAL RANKING========");
     
-    for(int i = 0; i < TEAM_NUM; i++){
+    for(int i = 0; i < TEAM_NUM; i++)
         teams[i][3] = teams[i][1] - teams[i][2];
-        printf("\nTeam %d's score is %d, Goals Difference is %d", i+1, teams[i][0], teams[i][3]);
+    
+    for (int i = 0; i < TEAM_NUM; i++){
+        int temp = -1;
+        for(int j = 0; j < TEAM_NUM; j++){
+            if(teams[j][4] == 1)
+                continue;
+            if(temp == -1)
+                temp = j;
+            if(teams[j][0] < teams[temp][0])
+                continue;
+            else if(teams[j][0] == teams[temp][0])
+                continue;
+            else if(teams[j][1] <= teams[temp][1])
+                continue;
+            else
+                temp = j;
+        }
+        teams[temp][4] = 1;
+        printf("\nNo.%d: Team %d, score: %d, Goals Difference: %d, Goals For %d", i+1, temp+1, teams[temp][0], teams[temp][3], teams[temp][1]);
     }
     return 0;
 }
