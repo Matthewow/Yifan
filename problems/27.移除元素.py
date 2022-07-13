@@ -12,8 +12,7 @@ class Solution:
             if nums[j] != val:
                 nums[i] = nums[j]
                 i += 1
-        return i
-
+        print(nums)
 
 # @lc code=end
 
